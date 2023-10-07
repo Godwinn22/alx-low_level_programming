@@ -9,7 +9,7 @@ int main(void)
 {
 	int first_strip;
 	int sec_strip;
-	
+
 	for (first_strip = 0; first_strip <= 99; first_strip++)
 	{
 		for (sec_strip = 0; sec_strip <= 99; sec_strip++)
@@ -19,8 +19,8 @@ int main(void)
 				putchar(48 + (first_strip / 10));
 				putchar(48 + (first_strip % 10));
 				putchar(' ');
-				putchar(48 + (sec_strip /10));
-				putchar(48 + (sec_strip %10));
+				putchar(48 + (sec_strip / 10));
+				putchar(48 + (sec_strip % 10));
 				if (first_strip != 98 || sec_strip != 99)
 				{
 					putchar(',');
