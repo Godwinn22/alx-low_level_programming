@@ -10,11 +10,11 @@ int main(void)
 	char lower_alphas;
 
 	lower_alphas = 'z';
-	while(lower_alphas >= 'a')
+	while (lower_alphas >= 'a')
 	{
 		putchar(lower_alphas);
 		lower_alphas--;
 	}
 	putchar('\n');
-	return(0);
+	return (0);
 }
