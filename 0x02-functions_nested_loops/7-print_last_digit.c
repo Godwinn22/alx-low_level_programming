@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _abs - Entry point
+ * print_last_digit - Entry point
  * @a: an integer parameter.
  *
  * Return: Always 0 (success)
