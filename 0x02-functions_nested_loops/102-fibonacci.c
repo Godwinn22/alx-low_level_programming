@@ -3,12 +3,12 @@
 /**
  * main - A function that prints the first 50 fibonacci numbers
  * starting from 1 and 2.
- * 
+ *
  * Return: Always 0 (success)
 */
 int main(void)
 {
-	//using the unsigned long so as to accomodate positive large numbers
+	/* using the unsigned long so as to accomodate positive large numbers */
 	unsigned long int fibona_num1 = 1;
 	unsigned long int fibona_num2 = 2;
 	unsigned long int fibona_nums;
