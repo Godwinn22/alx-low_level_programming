@@ -2,36 +2,36 @@
 
 /**
  * times_table - Entry point
- * Description:a code that prints every minute, starting from 00:00 to 23:59.
  *
  * Return: Always 0 (success)
 */
 void times_table(void)
 {
-	int a;
-	int b;
-	int multiplier;
+	int a, b, multiplier;
 
 	for (a = 0; a <= 9; a++)
 	{
+		_putchar('0');
+		_putchar(',');
+		_putchar(' ');
 		for (b = 0; b <= 9; b++)
 		{
 			multiplier = a * b;
-			if (multiplier <= 9)
+			if ((multiplier / 10) > 0)
 			{
-				_putchar(multiplier + '0');
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
+				_putchar((multiplier / 10) + '0');
 			}
 			else
 			{
-				_putchar((multiplier / 10) + '0');
-				_putchar((multiplier % 10) + '0');
+				_putchar(' ');
+			}
+			_putchar((multiplier % 10) + '0');
+			if (b < 9)
+			{
 				_putchar(',');
 				_putchar(' ');
 			}
 		}
-	_putchar('\n');
+		_putchar('\n');
 	}
 }
