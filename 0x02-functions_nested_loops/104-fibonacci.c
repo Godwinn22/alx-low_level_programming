@@ -15,13 +15,13 @@ int main(void)
 	int i;
 
 	printf("%lu, ", fibona_num1);
-	for (i = 1; i < 98; i++)
+	for (i = 1; i < 95; i++)
 	{
 		printf("%lu", fibona_num2);
 		fibona_nums = fibona_num1 + fibona_num2;
 		fibona_num1 = fibona_num2;
 		fibona_num2 = fibona_nums;
-		if (i < 97)
+		if (i < 94)
 		{
 			printf(", ");
 		}
