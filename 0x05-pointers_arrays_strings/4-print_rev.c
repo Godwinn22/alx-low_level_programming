@@ -17,7 +17,7 @@ void print_rev(char *s)
 		/* code to get the length first */
 		counter++;
 	}
-	for (i = counter - 1; s[i] >= 0; i--)
+	for (i = counter - 1; i >= 0; i--)
 	{
 		/* printing the characters in reverse */
 		_putchar(s[i]);
