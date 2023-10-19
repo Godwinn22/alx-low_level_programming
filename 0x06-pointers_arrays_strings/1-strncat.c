@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * *_strcat - a function that concatenates two strings.
+ * *_strncat - a function that concatenates two strings.
  * @dest: the first pointer to a character
  * @src: the second pointer to a character
+ * @n: the variable we use to check fot the n times.
  *
  * Return: On success 1.
  */
