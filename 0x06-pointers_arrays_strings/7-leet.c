@@ -8,23 +8,23 @@
  */
 char *leet(char *a)
 {
-	int i;
-	char leet_chars[128];
+	int i, j;
 
-	leet_chars['a'] = leet_chars['A'] = 52;
-	leet_chars['e'] = leet_chars['E'] = 51;
-	leet_chars['o'] = leet_chars['O'] = 48;
-	leet_chars['t'] = leet_chars['T'] = 55;
-	leet_chars['l'] = leet_chars['L'] = 49;
+	char leet_chars[] = "aAeEoOtTlL";
+	char leet_chars_repl[] = "4433007711";
 
-	for (i = 0; a[i]; i++)
+	int strn_len = 0;
+
+	for (i = 0; a[i] != '\0'; i++)
 	{
-		int a_repl = a[i];
-
-		if (leet_chars[a_repl])
+		for (j = 0; j < 10; j++)
 		{
-			a[i] = leet_chars[a_repl];
+			if (leet_chars[j] == a[strn_len])
+			{
+				a[strn_len] = leet_chars_repl[j];
+			}
 		}
+		strn_len++;
 	}
 	return (a);
 }
