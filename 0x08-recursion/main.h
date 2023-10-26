@@ -14,5 +14,6 @@ int is_prime_number(int n);
 int strn_len(char *s);
 int diff(char *s, int strn1, int strn2);
 int is_palindrome(char *s);
+int wildcmp(char *s1, char *s2);
 
 #endif
