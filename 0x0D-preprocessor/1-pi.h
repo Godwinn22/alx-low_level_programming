@@ -1,6 +1,19 @@
-#ifndef _PI_H_
-#define _PI_H_
+#include <stdio.h>
+#include "3-function_like_macro.h"
+#include "3-function_like_macro.h"
 
-#define PI 3.14159265359
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    int i;
+    int j;
 
-#endif
+    i = ABS(-98) * 10;
+    j = ABS(98) * 10;
+    printf("%d, %d\n", i, j);
+    return (0);
+}
