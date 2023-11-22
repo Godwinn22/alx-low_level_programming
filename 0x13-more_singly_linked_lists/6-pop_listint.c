@@ -12,15 +12,14 @@ int pop_listint(listint_t **head)
 	listint_t *removed_node;
 	int node_data;
 
-	if (*head == NULL)
+	if (!head || !*head)
 	{
 		return (0);
 	}
 
 	removed_node = *head;
 	node_data = removed_node->n;
-	free(removed_node);
-
 	*head = (*head)->next;
+	free(removed_node);
 	return (node_data);
 }
