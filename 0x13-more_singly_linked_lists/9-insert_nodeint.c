@@ -9,7 +9,7 @@
  * do not add the new node and return NULL
  * @head: pointer to the head of the list
  * @idx: the index of the list
- * @n:
+ * @n: the number
  * Return: the address of the new node, or NULL if it failed
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
