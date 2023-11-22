@@ -1,7 +1,8 @@
 #include "lists.h"
 
 /**
- * sum_listint - a function that inserts a new node at a given position.
+ * *insert_nodeint_at_index - a function that
+ * inserts a new node at a given position.
  *
  * Description: where idx is the index of the
  * list where the new node should be added. Index starts at 0
