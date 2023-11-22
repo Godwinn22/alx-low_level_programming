@@ -1,4 +1,4 @@
-#include "lists.h"
+ #include "lists.h"
 
 /**
  * free_listint2 - a function that frees a listint_t list.
@@ -12,17 +12,15 @@
  */
 void free_listint2(listint_t **head)
 {
-	listint_t *current_node;
-	listint_t **tmp = head;
+	listint_t *tmp = *head;
 
-	if (tmp != NULL)
+	if (!head || !*head)
+		return;
+	while (tmp)
 	{
-		for (; *head != NULL; *head = current_node)
-		{
-			current_node = *head;
-			free(current_node);
-			*head = (*head)->next;
-		}
-		*tmp = NULL;
+		listint_t *next = tmp->next;
+		free(tmp);
+		tmp = next;
 	}
+	*head = NULL;
 }
