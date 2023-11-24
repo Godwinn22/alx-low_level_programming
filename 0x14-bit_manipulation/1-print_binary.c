@@ -7,25 +7,19 @@
  * Description: You are not allowed to use arrays
  * You are not allowed to use malloc
  * You are not allowed to use the % or / operators
- * Return: void
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int i = 0;
+	int shift = sizeof(unsigned long int) * 8 - 1;
 
-	if (n == 0)
+	while (!(n & (1UL << shift)) && shift > 0)
 	{
-		printf("0\n");
-		return;
+		shift--;
 	}
-	while (n > 0)
+	for (; shift >= 0; shift--)
 	{
-		if ((n & 1))
-			printf("1");
-		else
-			printf("0");
-		n = n >> 1;
-		i++;
+		_putchar((n & (1UL << shift)) ? '1' : '0');
 	}
-	printf("\n");
+
+	_putchar('\n');
 }
