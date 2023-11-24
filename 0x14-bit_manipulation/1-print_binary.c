@@ -12,6 +12,12 @@
 void print_binary(unsigned long int n)
 {
 	unsigned long int i = 0;
+
+	if (n == 0)
+	{
+		printf("0\n");
+		return;
+	}
 	while (n > 0)
 	{
 		if ((n & 1))
