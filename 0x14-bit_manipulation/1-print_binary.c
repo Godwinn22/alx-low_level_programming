@@ -1,25 +1,30 @@
 #include "main.h"
 
 /**
+ * print_bi_recus - printing the binary recursively
+ * @n: the digit
+ * Return: void
+ */
+void print_bi_recus(unsigned long int n)
+{
+	if (n == 0)
+		return;
+	print_bi_recus(n >> 1);
+	if ((n & 1) == 1)
+		_putchar('1');
+	if ((n & 1) == 0)
+		_putchar('0');
+}
+
+/**
  * print_binary - a function that prints the binary representation of a number.
- * @n: pointer to a character array or string that represents a binary number
- *
- * Description: You are not allowed to use arrays
- * You are not allowed to use malloc
- * You are not allowed to use the % or / operators
+ * @n: pointer to a character array or string that represents a binary number\
+ * Return: void
  */
 void print_binary(unsigned long int n)
 {
-	int shift = sizeof(unsigned long int) * 8 - 1;
-
-	while (!(n & (1UL << shift)) && shift > 0)
-	{
-		shift--;
-	}
-	for (; shift >= 0; shift--)
-	{
-		_putchar((n & (1UL << shift)) ? '1' : '0');
-	}
-
-	_putchar('\n');
+	if (n == 0)
+		_putchar('0');
+	else
+		print_bi_recus(n);
 }
