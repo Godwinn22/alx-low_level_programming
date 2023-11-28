@@ -76,7 +76,6 @@ void error_99(int file0, char *buffer, char *argv)
  * error_100 - returns error 100
  * @file0: the file
  * @buffer: the buffer
- * @argv: argument vector
 */
 void error_100(int file0, char *buffer)
 {
