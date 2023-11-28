@@ -10,29 +10,32 @@
 int create_file(const char *filename, char *text_content)
 {
 	int fd;
-	ssize_t bytesWritten;
+	int output = 1;
 
 	if (filename == NULL || strlen(filename) < 3)
 	{
 		return (-1);
 	}
 
-	fd = open(filename, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
 	{
 		perror("Error opening file");
-		exit(-1);
+		return (-1);
 	}
 
-	bytesWritten = write(fd, text_content, strlen(text_content));
-	if (bytesWritten == -1)
+	if (text_content)
 	{
-		perror("Error writing to file");
-		close(fd);
-		exit(-1);
+		output = write(fd, text_content, strlen(text_content));
+		if (output == -1)
+		{
+			perror("Error writing to file");
+			close(fd);
+			return (-1);
+		}
 	}
 
 	close(fd);
 	printf("%s created successfully!\n", filename);
-	return (0);
+	return (1);
 }
