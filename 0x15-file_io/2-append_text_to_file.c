@@ -16,10 +16,10 @@ int append_text_to_file(const char *filename, char *text_content)
 	fd = open(filename, O_WRONLY | O_APPEND);
 	if (fd == -1)
 		return (-1);
+	bytesWritten = write(fd, text_content, strlen(text_content));
 	if (text_content != NULL)
 	{
-		bytesWritten = write(fd, text_content, strlen(text_content));
-		if (bytesWritten == -1 || bytesWritten != strlen(text_content))
+		if (bytesWritten == -1 || bytesWritten != (int)strlen(text_content))
 		{
 			close(fd);
 			return (-1);
