@@ -78,7 +78,7 @@ void error_99(int file0, char *buffer, char *argv)
  * @buffer: the buffer
  * @argv: argument vector
 */
-void error_100(int file0, char *buffer, char *argv)
+void error_100(int file0, char *buffer)
 {
 	if (file0 < 0)
 	{
