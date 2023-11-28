@@ -1,88 +1,73 @@
 #include "main.h"
 
+#define BUF_SIZE 1024
+
 /**
- * main - Entry point
- * @argc: the argument counter
- * @argv: the argument vector
- * Return: Always 0 (success)
+ * Copies content from one file to another.
+ * @param fromFileName: Source file name.
+ * @param toFileName: Destination file name.
  */
-int main(int argc, char **argv)
+void copyFile(const char *fromFileName, const char *toFileName)
 {
-	int file0, file1, output0, output1;
-	char *buffer;
+    int sourceFile, destFile;
+    char buffer[BUF_SIZE];
+    ssize_t bytesRead, bytesWritten;
 
-	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to");
-		exit(97);
-	}
-	buffer = malloc(BUF_SIZE);
-	if (buffer == NULL)
-		return (0);
-	file1 = open(argv[1], O_RDONLY);
-	error_98(file1, buffer, argv[1]);
-	file0 = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT | 0664);
-	error_99(file0, buffer, argv[2]);
+    sourceFile = open(fromFileName, O_RDONLY);
+    if (sourceFile == -1) {
+        perror("Error opening source file");
+        exit(98);
+    }
 
-	do {
-		output0 = read(file1, buffer, BUF_SIZE);
-		if (output0 == 0)
-			break;
-		error_98(output0, buffer, argv[1]);
-		output1 = write(file0, buffer, output0);
-		error_99(output1, buffer, argv[2]);
-	} while (output1 >= BUF_SIZE);
-	output0 = close(file0);
-	error_100(output0, buffer);
-	output0 = close(file1);
-	error_100(output0, buffer);
-	free(buffer);
-	return (0);
+    destFile = open(toFileName, O_WRONLY | O_TRUNC | O_CREAT, 0664);
+    if (destFile == -1) {
+        perror("Error opening or creating destination file");
+        close(sourceFile);
+        exit(99);
+    }
+
+    do {
+        bytesRead = read(sourceFile, buffer, BUF_SIZE);
+        if (bytesRead == -1) {
+            perror("Error reading from source file");
+            closeFilesAndExit(sourceFile, destFile);
+        }
+
+        bytesWritten = write(destFile, buffer, bytesRead);
+        if (bytesWritten == -1 || bytesWritten != bytesRead) {
+            perror("Error writing to destination file");
+            closeFilesAndExit(sourceFile, destFile);
+        }
+    } while (bytesRead == BUF_SIZE);
+
+    closeFilesAndExit(sourceFile, destFile);
 }
 
 /**
- * error_98 - returns error 98
- * @file0: the file
- * @buffer: the buffer
- * @argv: argument vector
-*/
-void error_98(int file0, char *buffer, char *argv)
+ * Closes files and exits the program.
+ * @param sourceFile: Source file descriptor.
+ * @param destFile: Destination file descriptor.
+ */
+void closeFilesAndExit(int sourceFile, int destFile)
 {
-	if (file0 < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
-		free(buffer);
-		exit(98);
-	}
+    if (close(destFile) == -1) {
+        perror("Error closing destination file");
+    }
+
+    if (close(sourceFile) == -1) {
+        perror("Error closing source file");
+    }
+
+    exit(100);
 }
 
-/**
- * error_99 - returns error 99
- * @file0: the file
- * @buffer: the buffer
- * @argv: argument vector
-*/
-void error_99(int file0, char *buffer, char *argv)
-{
-	if (file0 < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
-		free(buffer);
-		exit(99);
-	}
-}
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+        exit(97);
+    }
 
-/**
- * error_100 - returns error 100
- * @file0: the file
- * @buffer: the buffer
-*/
-void error_100(int file0, char *buffer)
-{
-	if (file0 < 0)
-	{
-		dprintf(STDERR_FILENO, "Can't close fd %i\n", file0);
-		free(buffer);
-		exit(100);
-	}
+    copyFile(argv[1], argv[2]);
+
+    return 0;
 }
