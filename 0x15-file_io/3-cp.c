@@ -6,7 +6,7 @@
  * @argv: the argument vector
  * Return: Always 0 (success)
  */
-int main(int argc, int **argv)
+int main(int argc, char **argv)
 {
 	int file0, file1, output0, output1;
 	char *buffer;
