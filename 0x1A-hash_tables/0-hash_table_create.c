@@ -1,10 +1,10 @@
 #include "hash_tables.h"
 
 /**
-* hash_table_create - ...
-* @size: ...
-* Return: ...
-*/
+ * hash_table_create - ...
+ * @size: ...
+ * Return: ...
+ */
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *table;
@@ -21,11 +21,11 @@ hash_table_t *hash_table_create(unsigned long int size)
 	{
 		return (NULL);
 	}
-    i = 0;
-    while (i < size)
-    {
+	i = 0;
+	while (i < size)
+	{
 		table->array[i] = NULL;
-        i++;
-    }
-    return (table);
+		i++;
+	}
+	return (table);	
 }
